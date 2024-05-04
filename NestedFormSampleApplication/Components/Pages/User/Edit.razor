@@ -1,0 +1,23 @@
+﻿@page "/user/edit/{id}"
+@*you can move references to import files/ here just for tutorial*@
+@using NestedFormSampleApplication.Model
+@using NestedFormSampleApplication.Services
+@inject IUserService _UserService
+@* This area is important *@
+@rendermode InteractiveServer
+@* This area is important *@
+<h3>Update</h3>
+<Form model="model" OnValidSubmit="UpdateUser"></Form>
+@code {
+    UserDto model = new UserDto();
+    [Parameter]
+    public string Id { get; set; }
+    protected override void OnParametersSet()
+    {
+        model = _UserService.Edit(int.Parse(Id));
+    }
+    async Task UpdateUser()
+    {
+        _UserService.Update(model);
+    }
+}

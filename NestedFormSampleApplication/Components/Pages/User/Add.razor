@@ -1,0 +1,18 @@
+﻿@page "/user/add"
+@using NestedFormSampleApplication.Model
+@using NestedFormSampleApplication.Services
+@inject IUserService _UserService
+@* This area is important *@
+@rendermode InteractiveServer
+@* This area is important *@
+<h3>Create A new User</h3>
+<Form model="model" OnValidSubmit="createUser"></Form>
+@code {
+    UserDto model = new UserDto();
+    async Task createUser()
+    {
+        //pass model to the service
+        //your model data is bound
+        _UserService.Create(model);
+    }
+}

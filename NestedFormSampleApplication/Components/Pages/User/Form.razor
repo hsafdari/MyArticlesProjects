@@ -1,0 +1,25 @@
+﻿@using NestedFormSampleApplication.Model
+
+<EditForm Model="model" OnValidSubmit="OnValidSubmit">
+    <div class="mb-3">
+        <label for="model.UserName" class="form-label">UserName</label>
+        <InputText @bind-Value="@model.UserName" class="form-control"></InputText>
+    </div>
+    <div class="mb-3">
+        <label for="model.Password" class="form-label">Password</label>
+        <InputText @bind-Value="@model.Password" class="form-control"></InputText>
+    </div>
+    <div class="mb-3">
+        <label for="model.Email" class="form-label">Email address</label>
+        <InputText @bind-Value="@model.Email" class="form-control"></InputText>
+    </div>
+    <div>
+        <button type="submit" class="btn btn-success">submit</button>
+    </div>
+</EditForm>
+@code {
+    [Parameter]
+    public UserDto model { get; set; }
+    [Parameter]
+    public EventCallback OnValidSubmit { get; set; }
+}
